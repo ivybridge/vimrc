@@ -1,0 +1,12 @@
+#!/bin/bash
+
+tagfile="tag.list"
+
+if [ ! -f "$tagfile"  ]; then 
+    echo "please create tag.list, add dirs"
+    exit 1;
+fi
+
+path=$(cat $tagfile | tr "\n" " ")
+
+find $path -name \*.h -print -o -name \*.c -print -o -name \*.cpp -print | ctags -L - 
